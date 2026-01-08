@@ -69,10 +69,20 @@ sequenceDiagram
 - Android SDK 33+ / NDK 25+
 - MTK 8395 또는 그에 준하는 성능의 기기 (최소 8GB RAM 권장)
 
-### 모델 준비
-본 저장소에는 모델 파일이 포함되어 있지 않습니다. 다음 모델들을 다운로드하여 `app/src/main/assets/` 또는 지정된 경로에 배치해야 합니다.
-1. **LLM:** [Qwen2.5-3B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF) (q4_k_m 권장)
-2. **Embedding:** `all-MiniLM-L6-v2.onnx`
+### 모델 준비 (Model Setup)
+본 저장소에는 모델 파일이 포함되어 있지 않습니다. 다음 모델들을 다운로드하여 `app/src/main/assets/` 폴더에 배치해야 합니다.
+
+1. **LLM 모델 (Qwen2.5-3B-Instruct)**
+   - **다운로드:** [Qwen2.5-3B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF)
+   - **권장 파일:** `qwen2.5-3b-instruct-q4_k_m.gguf` (모바일 환경에 최적화된 4-bit 양자화 버전)
+   - **배치:** `app/src/main/assets/` 또는 앱 내 설정에서 외부 경로(SAF) 지정 가능.
+
+2. **텍스트 임베딩 및 토크나이저 (all-MiniLM-L6-v2)**
+   - **다운로드:** [Xenova/all-MiniLM-L6-v2 (ONNX)](https://huggingface.co/Xenova/all-MiniLM-L6-v2)
+   - **필수 파일:** 
+     - `onnx/model.onnx` (다운로드 후 **`all-MiniLM-L6-v2.onnx`**로 파일명 변경 필수)
+     - `vocab.txt` (토크나이저용 단어 사전)
+   - **배치:** `app/src/main/assets/` 폴더 내에 두 파일 모두 위치해야 합니다.
 
 ### 빌드 및 실행
 ```bash
